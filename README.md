@@ -1,12 +1,81 @@
-# React + Vite
+# Ticket Management System (TMS) Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 📌 Overview
 
-Currently, two official plugins are available:
+This is the **React frontend** for the Smart Ticket Assignment System. It includes user authentication (login/signup), ticket creation and listing, detailed ticket views, and an **admin panel** for managing users and their roles/skills.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+The app uses:
 
-## Expanding the ESLint configuration
+- ⚡️ [Vite](https://vitejs.dev/) for fast build and development
+- 🎨 [DaisyUI](https://daisyui.com/) (based on Tailwind CSS) for UI components
+- 📡 `fetch` for API calls
+- 🛠️ Simple client-side auth via `localStorage`
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 🧾 Pages Overview
+
+| Route          | Description                                                   |
+| -------------- | ------------------------------------------------------------- |
+| `/`            | Shows all tickets or Redirects to `/login` if unauthenticated |
+| `/login`       | User login page                                               |
+| `/signup`      | User signup page                                              |
+| `/tickets/:id` | Shows detailed view of a ticket (fields vary by role)         |
+| `/admin`       | Admin panel to manage users, roles, and skill assignments     |
+
+---
+
+## 🔧 Setup Instructions
+
+1. **Clone the repo**:
+
+   ```bash
+   git clone https://github.com/wajeshubham/ai-ticket-assistant-fe.git
+   cd ai-ticket-assistant-fe
+   ```
+
+2. **Install dependencies**:
+
+   ```bash
+   npm install
+   ```
+
+3. **Create `.env`** file:
+
+   ```env
+   VITE_SERVER_URL=http://localhost:3000/api
+   ```
+
+4. **Run the dev server**:
+   ```bash
+   npm run dev
+   ```
+
+---
+
+### ✅ Markdown Rendering
+
+Helpful Notes (markdown) are rendered using:
+
+```bash
+npm i react-markdown
+```
+
+In `TicketDetail.jsx`:
+
+```jsx
+import ReactMarkdown from "react-markdown";
+
+<ReactMarkdown>{ticket.helpfulNotes}</ReactMarkdown>;
+```
+
+---
+
+## 👑 Admin Panel (`/admin`)
+
+- Lists all users with their:
+  - Name, Email, Role, Skills
+- Admin can:
+  - Change user `role` via dropdown
+  - Assign comma-separated skills → submitted as `array of strings`
+- Live email-based search bar
